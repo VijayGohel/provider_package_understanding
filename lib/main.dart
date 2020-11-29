@@ -6,20 +6,24 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  final String data = 'Secret';
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('data'),
+    return Provider<String>(
+      create: (context) => data,
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        body: Level1(),
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text(data),
+          ),
+          body: Level1(),
+        ),
       ),
     );
   }
@@ -42,6 +46,6 @@ class Level2 extends StatelessWidget {
 class Level3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Text('data');
+    return Text(Provider.of<String>(context));
   }
 }
